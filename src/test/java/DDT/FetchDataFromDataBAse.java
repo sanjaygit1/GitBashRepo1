@@ -11,7 +11,7 @@ import com.mysql.jdbc.Driver;
 public class FetchDataFromDataBAse {
 
 	public static void main(String[] args) throws Throwable {
-
+//Im dataBase
 		// step:1 :--->Register driver/load the mysql database
 		Driver driverRef = new Driver();
 		DriverManager.registerDriver(driverRef);
