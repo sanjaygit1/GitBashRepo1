@@ -12,6 +12,7 @@ public class FetchDataFromDataBAse {
 
 	public static void main(String[] args) throws Throwable {
 //Im dataBase
+		//sending data back
 		// step:1 :--->Register driver/load the mysql database
 		Driver driverRef = new Driver();
 		DriverManager.registerDriver(driverRef);
