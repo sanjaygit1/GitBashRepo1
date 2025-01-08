@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class DeleteProduct {
 
@@ -51,11 +52,14 @@ public class DeleteProduct {
 			}
 		}
 
-		if (flag) {
-			System.out.println("Product data is deleted");
-		} else {
-			System.out.println("product data is not deleted");
-
-		}
+//		if (flag) {
+//			System.out.println("Product data is deleted");
+//		} else {
+//			System.out.println("product data is not deleted");
+//
+//		}
+		
+		Assert.assertTrue(flag, "Prdoduct data is not deleted");
+		System.out.println("Product is Deleted");
 	}
 }

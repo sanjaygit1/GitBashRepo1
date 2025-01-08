@@ -3,6 +3,7 @@ package POM_Repo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class CampValidatePage {
 
@@ -19,10 +20,13 @@ public class CampValidatePage {
 	public void validateCamp(WebDriver driver,String camName)
 	{
 		String actdata = driver.findElement(By.xpath("//span[@id=\"dtlview_Campaign Name\"]")).getText();
-		if (actdata.contains(camName)) {
-			System.out.println("campaign name is created");
-		} else {
-			System.out.println("campaign name is not carated");
-		}
+//		if (actdata.contains(camName)) {
+//			System.out.println("campaign name is created");
+//		} else {
+//			System.out.println("campaign name is not carated");
+//		}
+		Assert.assertEquals(actdata,camName,"Assert Fail");
+		System.out.println("Assert Pass");
+		
 	}
 }

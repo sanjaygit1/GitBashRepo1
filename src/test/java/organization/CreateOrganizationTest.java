@@ -34,8 +34,8 @@ import POM_Repo.OrgLoopUpImg;
 import POM_Repo.OrganizationValidatePage;
 
 public class CreateOrganizationTest extends BaseClass {
-
-	@Test
+//one
+	@Test(groups = "regressionTest")
 	public void createOrganizationTest() throws Throwable {
 
 		HomePage home = new HomePage(driver);

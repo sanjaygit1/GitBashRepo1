@@ -3,6 +3,7 @@ package POM_Repo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class ProductValidatePage {
 
@@ -15,10 +16,11 @@ public class ProductValidatePage {
 	{
 		String actData1 = driver.findElement(By.xpath("//span[@id='dtlview_Product']")).getText();
 
-		if (actData1.contains(prdName)) {
-			System.out.println("product name is created");
-		} else {
-			System.out.println("Product name is not created");
-		}
+//		if (actData1.contains(prdName)) {
+//			System.out.println("product name is created");
+//		} else {
+//			System.out.println("Product name is not created");
+//		}
+		Assert.assertEquals(actData1, prdName);
 	}
 }

@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import POM_Repo.HomePage;
 import POM_Repo.LoginPage;
@@ -19,23 +20,30 @@ import POM_Repo.LoginPage;
 public class BaseClass {
 
 	public WebDriver driver;
+	public static WebDriver sDriver;
 
-	@BeforeSuite
+	@BeforeSuite(groups = { "smokeTest", "regressionTest", "sanityTest" })
 	public void Bs() {
 		System.out.println("DataBase connection");
 	}
 
-	@BeforeTest
+	@BeforeTest(groups = { "smokeTest", "regressionTest", "sanityTest" })
 	public void Bt() {
 		System.out.println("parallel execution");
 	}
 
-	@BeforeClass
+//	@Parameters("BROWSER")
+	@BeforeClass(groups = { "smokeTest", "regressionTest", "sanityTest" })
+//	public void Bc(String BROWSER) throws Throwable {
 	public void Bc() throws Throwable {
+
 		System.out.println("Launching Browser");
 		File_Utility flib = new File_Utility();
 		String BROWSER = flib.getKeyAndValuePair("browser");
 
+		//reading parameters from cmd
+//		String BROWSER = System.getProperty("browser");
+		
 		if (BROWSER.equalsIgnoreCase("chrome")) {
 			driver = new ChromeDriver();
 		} else if (BROWSER.equalsIgnoreCase("edge")) {
@@ -44,17 +52,24 @@ public class BaseClass {
 			driver = new FirefoxDriver();
 		} else {
 			driver = new ChromeDriver();
+			
 		}
+		sDriver=driver;
 	}
 
-	@BeforeMethod
+//@Parameters({"URL","USERNAME","PASSWORD"})
+	@BeforeMethod(groups = { "smokeTest", "regressionTest", "sanityTest" })
+//	public void Bm(String URL,String USERNAME,String PASSWORD) throws Throwable {
 	public void Bm() throws Throwable {
-
 		File_Utility flib = new File_Utility();
-        String URL = flib.getKeyAndValuePair("url");
+		String URL = flib.getKeyAndValuePair("url");
 		String USERNAME = flib.getKeyAndValuePair("username");
 		String PASSWORD = flib.getKeyAndValuePair("password");
 
+//		String URL = System.getProperty("url");
+//		String USERNAME = System.getProperty("username");
+//		String PASSWORD = System.getProperty("password");
+	
 		WebDriver_Utility wlib = new WebDriver_Utility();
 		wlib.maximizingWindow1(driver);
 		wlib.waitForElementsToLoad(driver);
@@ -66,25 +81,25 @@ public class BaseClass {
 		System.out.println("Login into application");
 	}
 
-	@AfterMethod
+	@AfterMethod(groups = { "smokeTest", "regressionTest", "sanityTest" })
 	public void Am() {
-		HomePage	home=new HomePage(driver);
+		HomePage home = new HomePage(driver);
 		home.logOutApp();
 		System.out.println("logout application");
 	}
 
-	@AfterClass
+	@AfterClass(groups = { "smokeTest", "regressionTest", "sanityTest" })
 	public void Ac() {
 		driver.quit();
 		System.out.println("close browser");
 	}
 
-	@AfterTest
+	@AfterTest(groups = { "smokeTest", "regressionTest", "sanityTest" })
 	public void At() {
 		System.out.println("close parallel execution");
 	}
 
-	@AfterSuite
+	@AfterSuite(groups = { "smokeTest", "regressionTest", "sanityTest" })
 	public void As() {
 		System.out.println("close DataBase");
 	}

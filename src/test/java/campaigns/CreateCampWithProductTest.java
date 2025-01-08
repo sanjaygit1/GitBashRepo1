@@ -37,7 +37,7 @@ import POM_Repo.WindowSwtiching;
 
 public class CreateCampWithProductTest extends BaseClass {
 
-	@Test
+	@Test(groups = "smokeTest")
 	public void createCampWithProductTest() throws Throwable {
 		WebDriver_Utility wlib = new WebDriver_Utility();
 		HomePage home = new HomePage(driver);

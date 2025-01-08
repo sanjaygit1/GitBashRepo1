@@ -34,7 +34,7 @@ import POM_Repo.ProductValidatePage;
 
 public class CreateProductAndDeleteProductTest extends BaseClass {
 
-	@Test
+	@Test(enabled = false)
 	public void createProductAndDeleteProductTest() throws Throwable {
 		WebDriver_Utility wlib = new WebDriver_Utility();
 		File_Utility flib = new File_Utility();

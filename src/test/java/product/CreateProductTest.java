@@ -16,6 +16,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import Generic_Utility.BaseClass;
@@ -23,42 +25,23 @@ import Generic_Utility.Excel_Utility;
 import Generic_Utility.File_Utility;
 import Generic_Utility.Java_Utility;
 import Generic_Utility.WebDriver_Utility;
+import POM_Repo.CampLookUp;
+import POM_Repo.CampValidatePage;
+import POM_Repo.CreateCampPage;
+import POM_Repo.CreateOrganizationPage;
 import POM_Repo.CreateProductPage;
 import POM_Repo.HomePage;
 import POM_Repo.LoginPage;
+import POM_Repo.OrgLoopUpImg;
+import POM_Repo.OrganizationValidatePage;
 import POM_Repo.PrdLookUpImg;
 import POM_Repo.ProductValidatePage;
 
+@Listeners(Generic_Utility.ExtentReportConfig.class)
 public class CreateProductTest extends BaseClass {
 
-	@Test
+	@Test(groups = "sanityTest")
 	public void createProductTest() throws Throwable {
-		File_Utility flib = new File_Utility();
-		String BROWSER = flib.getKeyAndValuePair("browser");
-		String URL = flib.getKeyAndValuePair("url");
-		String USERNAME = flib.getKeyAndValuePair("username");
-		String PASSWORD = flib.getKeyAndValuePair("password");
-
-//		WebDriver driver;
-//
-//		if (BROWSER.equalsIgnoreCase("chrome")) {
-//			driver = new ChromeDriver();
-//		} else if (BROWSER.equalsIgnoreCase("edge")) {
-//			driver = new EdgeDriver();
-//		} else if (BROWSER.equalsIgnoreCase("firefox")) {
-//			driver = new FirefoxDriver();
-//		} else {
-//			driver = new ChromeDriver();
-//		}
-
-		WebDriver_Utility wlib = new WebDriver_Utility();
-		wlib.maximizingWindow1(driver);
-		wlib.waitForElementsToLoad(driver);
-
-		driver.get(URL);
-
-		LoginPage login = new LoginPage(driver);
-		login.loginIntoApp(USERNAME, PASSWORD);
 
 		HomePage home = new HomePage(driver);
 		home.clickPrdLink();
@@ -75,8 +58,11 @@ public class CreateProductTest extends BaseClass {
 		CreateProductPage page = new CreateProductPage(driver);
 		page.prdDetails(prdName);
 
+	//	Assert.fail();
 		ProductValidatePage validate = new ProductValidatePage(driver);
 
-	
 	}
+
+
+
 }
